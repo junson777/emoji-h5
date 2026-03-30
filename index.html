@@ -121,6 +121,22 @@ footer{background:#050510;padding:28px 24px;text-align:center;font-size:13px;col
 html{scroll-behavior:auto!important}
 body{scroll-behavior:auto!important}
 
+/* 数字名片视频样式 */
+.video-item{padding:8px;background:#000;border-radius:12px;overflow:hidden}
+.video-item video{display:block;width:100%;max-width:480px;margin:0 auto;border-radius:8px}
+
+/* IP小短片版块 */
+.h-video{background:linear-gradient(135deg,#1a1a2e,#16213e)!important;color:#fff}
+.h-video .case-info h3,.h-video .case-info p{color:#fff!important}
+.video-showcase{padding:24px 20px}
+.video-intro{text-align:center;padding:20px}
+.video-intro p{color:#555;margin-bottom:16px;font-size:15px}
+.xhs-link{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,#ff2442,#ff6b81);color:#fff;border-radius:50px;text-decoration:none;font-size:15px;font-weight:600;box-shadow:0 4px 16px rgba(255,36,66,.3);transition:all .3s}
+.xhs-link:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,36,66,.4)}
+.short-film-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;padding:20px 20px 8px}
+.short-film-item{border-radius:12px;overflow:hidden;background:#000;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.short-film-label{padding:8px 12px;background:#111;color:#ccc;font-size:13px;text-align:center;border-radius:0 0 12px 12px}
+
 /* Lazy loading styles */
 .gif-item{position:relative;overflow:hidden;aspect-ratio:1;cursor:pointer;background:#f8f7f4}
 .gif-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,opacity .3s}
@@ -211,6 +227,19 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/ding-zong_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/ding-zong_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/ding-zong_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/ding-zong_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
     </div>
+    <div class="gif-dropdown-trigger" onclick="toggleDropdown(event)">
+      <span>🪪 数字名片</span>
+      <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+    </div>
+    <div class="gif-dropdown-content" style="display:none;">
+      <div class="case-gifs row2" style="padding:16px;">
+        <div class="video-item">
+          <video controls playsinline preload="none" style="width:100%;border-radius:12px;background:#000;">
+            <source src="showcase_gifs/ding-zong-card.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="case-card">
@@ -225,6 +254,19 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/lin-qiang_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/lin-qiang_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/lin-qiang_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/lin-qiang_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/lin-qiang_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/lin-qiang_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+    </div>
+    <div class="gif-dropdown-trigger" onclick="toggleDropdown(event)">
+      <span>🪪 数字名片</span>
+      <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+    </div>
+    <div class="gif-dropdown-content" style="display:none;">
+      <div class="case-gifs row2" style="padding:16px;">
+        <div class="video-item">
+          <video controls playsinline preload="none" poster="" style="width:100%;border-radius:12px;background:#000;">
+            <source src="showcase_gifs/lin-qiang-card.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -245,47 +287,44 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
 
   <div class="case-card">
     <div class="case-header h-pink">
-      <div class="case-info"><h3>城市小姐系列表情包</h3><p>都市风格 · 城市女性 · 社交传播型</p></div>
+      <div class="case-info"><h3>君姐 · 城市小姐高端系列</h3><p>都市风格 · 城市女性 · 社交传播型</p></div>
       <div class="case-badge">案例展示</div>
     </div>
-    <div class="gif-dropdown-trigger" onclick="toggleDropdown(event)">
-      <span>展开查看3组表情包</span>
-      <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-    </div>
-    <div class="gif-dropdown-content" style="display:none;">
-    <div class="gif-sub-case">
-      <div class="gif-sub-header">君姐 · 城市小姐高端系列</div>
-      <div class="case-gifs row2">
+    <div class="case-gifs row2">
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_01_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_01.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_02_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_02.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_03_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_03.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/jun-jie_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/jun-jie_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      </div>
     </div>
-    <div class="gif-sub-case">
-      <div class="gif-sub-header">子涵 · 城市小姐二次元Q版系列</div>
-      <div class="case-gifs row2">
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_01_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_01.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_02_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_02.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_03_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_03.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      </div>
+    <div class="gif-dropdown-trigger" onclick="toggleDropdown(event)">
+      <span>✨ 展开查看更多城市小姐系列</span>
+      <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
     </div>
-    <div class="gif-sub-case">
-      <div class="gif-sub-header">昱欣 · 城市小姐拟真3D系列</div>
-      <div class="case-gifs row2">
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_01_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_01.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_02_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_02.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_03_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_03.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
-      <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+    <div class="gif-dropdown-content" style="display:none;">
+      <div class="gif-sub-case">
+        <div class="gif-sub-header">子涵 · 城市小姐二次元Q版系列</div>
+        <div class="case-gifs row2">
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_01_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_01.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_02_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_02.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_03_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_03.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/zi-han_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/zi-han_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+        </div>
       </div>
-    </div>
+      <div class="gif-sub-case">
+        <div class="gif-sub-header">昱欣 · 城市小姐拟真3D系列</div>
+        <div class="case-gifs row2">
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_01_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_01.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_02_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_02.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_03_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_03.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_04_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_04.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_05_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_05.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+          <div class="gif-item" onclick="lb(this)"><img class="preview" src="showcase_gifs/yu-xin_06_preview.jpg"><img class="lazy" data-src="showcase_gifs/yu-xin_06.gif" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""><div class="gif-overlay"><span></span></div></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -373,6 +412,42 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
       <div class="gif-item" onclick="lb(this)"><img src="showcase_gifs/mingxing-ip_04.png" alt="" loading="lazy"><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img src="showcase_gifs/mingxing-ip_05.png" alt="" loading="lazy"><div class="gif-overlay"><span></span></div></div>
       <div class="gif-item" onclick="lb(this)"><img src="showcase_gifs/mingxing-ip_06.png" alt="" loading="lazy"><div class="gif-overlay"><span></span></div></div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header h-video">
+      <div class="case-info"><h3>IP小短片 · 品牌视觉动态展示</h3><p>品牌IP · 短视频营销 · 社交传播型</p></div>
+      <div class="case-badge">案例展示</div>
+    </div>
+    <div class="video-showcase">
+      <div class="short-film-grid">
+        <div class="short-film-item">
+          <video controls playsinline preload="none" poster="showcase_gifs/ip-short-film_01_poster.jpg" style="width:100%;border-radius:12px;background:#000;">
+            <source src="showcase_gifs/ip-short-film_01.mp4" type="video/mp4">
+          </video>
+          <div class="short-film-label">纸箱秒变宇宙飞船·亲子时光超有爱</div>
+        </div>
+        <div class="short-film-item">
+          <video controls playsinline preload="none" style="width:100%;border-radius:12px;background:#000;">
+            <source src="showcase_gifs/ip-short-film_02.mp4" type="video/mp4">
+          </video>
+          <div class="short-film-label">紫色玉手镯广告</div>
+        </div>
+        <div class="short-film-item">
+          <video controls playsinline preload="none" style="width:100%;border-radius:12px;background:#000;">
+            <source src="showcase_gifs/ip-short-film_03.mp4" type="video/mp4">
+          </video>
+          <div class="short-film-label">逐玉玉镯广告</div>
+        </div>
+      </div>
+      <div class="video-intro">
+        <p>🎬 更多精彩IP短片，点击查看完整作品集</p>
+        <a href="https://www.xiaohongshu.com/user/profile/62bc14e30000000019028b8d" target="_blank" class="xhs-link">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          在小红书查看全部作品 →
+        </a>
+      </div>
     </div>
   </div>
 
