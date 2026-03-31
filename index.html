@@ -122,8 +122,25 @@ html{scroll-behavior:auto!important}
 body{scroll-behavior:auto!important}
 
 /* 数字名片视频样式 */
-.video-item{padding:16px;background:#000;border-radius:12px;overflow:hidden;display:flex;justify-content:center;align-items:center}
-.video-item video{display:block;width:100%;max-width:600px;margin:0 auto;border-radius:8px}
+.video-item{
+  padding:20px;
+  background:#000;
+  border-radius:12px;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  box-sizing:border-box;
+}
+.video-item video{
+  display:block;
+  width:100%;
+  max-width:500px;
+  height:auto;
+  border-radius:8px;
+  background:#000;
+}
 
 /* IP小短片版块 */
 .h-video{background:linear-gradient(135deg,#1a1a2e,#16213e)!important;color:#fff}
@@ -174,13 +191,30 @@ body{scroll-behavior:auto!important}
 </style>
 <script>
 function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var content=trigger.nextElementSibling;var isOpen=content.style.display!=='none';content.style.display=isOpen?'none':'';trigger.classList.toggle('open',!isOpen);trigger.querySelector('span').textContent=isOpen?'展开查看3组表情包':'收起表情包';}
+
+// 增强视频加载可靠性
+document.addEventListener('DOMContentLoaded', function() {
+  var videos = document.querySelectorAll('video');
+  videos.forEach(function(video) {
+    video.addEventListener('error', function() {
+      console.error('视频加载失败:', video.src);
+      video.style.display = 'none';
+      var fallback = document.createElement('div');
+      fallback.style.cssText = 'width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;';
+      fallback.textContent = '视频加载失败，请刷新页面重试';
+      video.parentNode.insertBefore(fallback, video);
+    });
+    // 强制加载
+    video.load();
+  });
+});
 </script>
 </head>
 <body>
 
 <nav class="nav"><div class="nav-logo">数字<span>魔盒</span></div><div class="nav-links"><a href="#cases">案例展示</a><a href="#services">服务套餐</a><a href="#process">合作流程</a><a href="#contact">联系我们</a></div></nav>
-<section class="hero"><div class="hero-logo"><img src="logo.gif" alt="数字魔盒"></div><div class="hero-badge">✦  专业个性化数字视觉设计工作室  ✦</div><h1>让你的数字IP<br><span>"动"起来</span></h1><h2>企业品牌IP · 文创非遗 · 文化教育 · 企业家IP · 网红IP · 亲子家庭</h2><div class="hero-tags"><span class="hero-tag hi">企业IP定制</span><span class="hero-tag">年度服务</span><span class="hero-tag">版权登记</span><span class="hero-tag">多语言版本</span><span class="hero-tag">视频短片</span></div><div class="hero-promo" style="margin-bottom:32px;max-width:400px;width:100%;">
-    <video controls playsinline preload="metadata" style="width:100%;border-radius:16px;background:#000;box-shadow:0 8px 32px rgba(0,0,0,.4);">
+<section class="hero"><div class="hero-logo"><img src="logo.gif" alt="数字魔盒"></div><div class="hero-badge">✦  专业个性化数字视觉设计工作室  ✦</div><h1>让你的数字IP<br><span>"动"起来</span></h1><h2>企业品牌IP · 文创非遗 · 文化教育 · 企业家IP · 网红IP · 亲子家庭</h2><div class="hero-tags"><span class="hero-tag hi">企业IP定制</span><span class="hero-tag">年度服务</span><span class="hero-tag">版权登记</span><span class="hero-tag">多语言版本</span><span class="hero-tag">视频短片</span></div><div class="hero-promo" style="margin-bottom:32px;max-width:500px;width:100%;">
+    <video controls playsinline preload="metadata" style="width:100%;border-radius:16px;background:#000;box-shadow:0 8px 32px rgba(0,0,0,.4);display:block;">
       <source src="showcase_gifs/promo-video.mp4" type="video/mp4">
       您的浏览器不支持视频播放
     </video>
@@ -239,10 +273,11 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
       <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
     </div>
     <div class="gif-dropdown-content" style="display:none;">
-      <div class="case-gifs row2" style="padding:16px;">
+      <div class="case-gifs row2" style="padding:16px;display:flex;justify-content:center;">
         <div class="video-item">
-          <video controls playsinline preload="none" style="width:100%;border-radius:12px;background:#000;">
+          <video controls playsinline preload="metadata">
             <source src="showcase_gifs/ding-zong-card.mp4" type="video/mp4">
+            您的浏览器不支持视频播放
           </video>
         </div>
       </div>
@@ -267,10 +302,11 @@ function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var co
       <svg class="dropdown-arrow" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
     </div>
     <div class="gif-dropdown-content" style="display:none;">
-      <div class="case-gifs row2" style="padding:16px;">
+      <div class="case-gifs row2" style="padding:16px;display:flex;justify-content:center;">
         <div class="video-item">
-          <video controls playsinline preload="none" poster="" style="width:100%;border-radius:12px;background:#000;">
+          <video controls playsinline preload="metadata">
             <source src="showcase_gifs/lin-qiang-card.mp4" type="video/mp4">
+            您的浏览器不支持视频播放
           </video>
         </div>
       </div>
