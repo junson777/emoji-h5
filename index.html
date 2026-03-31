@@ -192,8 +192,35 @@ body{scroll-behavior:auto!important}
 <script>
 function toggleDropdown(e){e.preventDefault();var trigger=e.currentTarget;var content=trigger.nextElementSibling;var isOpen=content.style.display!=='none';content.style.display=isOpen?'none':'';trigger.classList.toggle('open',!isOpen);trigger.querySelector('span').textContent=isOpen?'展开查看3组表情包':'收起表情包';}
 
-// 增强视频加载可靠性
+// 宣传片自动播放控制
 document.addEventListener('DOMContentLoaded', function() {
+  var promoVideo = document.getElementById('promo-video');
+  var playIcon = document.getElementById('play-icon');
+  
+  if (promoVideo) {
+    // 隐藏播放图标（视频自动播放）
+    playIcon.style.opacity = '0';
+    playIcon.style.pointerEvents = 'none';
+    
+    // 监听播放/暂停事件
+    promoVideo.addEventListener('play', function() {
+      playIcon.style.opacity = '0';
+    });
+    
+    promoVideo.addEventListener('pause', function() {
+      playIcon.style.opacity = '1';
+    });
+    
+    // 尝试自动播放
+    var playPromise = promoVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function(error) {
+        console.log('自动播放被阻止，用户需要交互');
+      });
+    }
+  }
+  
+  // 增强视频加载可靠性
   var videos = document.querySelectorAll('video');
   videos.forEach(function(video) {
     video.addEventListener('error', function() {
@@ -213,12 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 <nav class="nav"><div class="nav-logo">数字<span>魔盒</span></div><div class="nav-links"><a href="#cases">案例展示</a><a href="#services">服务套餐</a><a href="#process">合作流程</a><a href="#contact">联系我们</a></div></nav>
-<section class="hero"><div class="hero-logo"><img src="logo.gif" alt="数字魔盒"></div><div class="hero-badge">✦  专业个性化数字视觉设计工作室  ✦</div><h1>让你的数字IP<br><span>"动"起来</span></h1><h2>企业品牌IP · 文创非遗 · 文化教育 · 企业家IP · 网红IP · 亲子家庭</h2><div class="hero-tags"><span class="hero-tag hi">企业IP定制</span><span class="hero-tag">年度服务</span><span class="hero-tag">版权登记</span><span class="hero-tag">多语言版本</span><span class="hero-tag">视频短片</span></div><div class="hero-promo" style="margin-bottom:32px;max-width:500px;width:100%;">
-    <video controls playsinline preload="metadata" style="width:100%;border-radius:16px;background:#000;box-shadow:0 8px 32px rgba(0,0,0,.4);display:block;">
+<section class="hero"><div class="hero-logo"><img src="logo.gif" alt="数字魔盒"></div><div class="hero-badge">✦  专业个性化数字视觉设计工作室  ✦</div><h1>让你的数字IP<br><span>"动"起来</span></h1><h2>企业品牌IP · 文创非遗 · 文化教育 · 企业家IP · 网红IP · 亲子家庭</h2><div class="hero-tags"><span class="hero-tag hi">企业IP定制</span><span class="hero-tag">年度服务</span><span class="hero-tag">版权登记</span><span class="hero-tag">多语言版本</span><span class="hero-tag">视频短片</span></div><div class="hero-promo" style="margin-bottom:32px;max-width:500px;width:100%;position:relative;">
+    <video id="promo-video" autoplay muted loop playsinline style="width:100%;border-radius:16px;background:#000;box-shadow:0 8px 32px rgba(0,0,0,.4);display:block;cursor:pointer;" onclick="this.paused ? this.play() : this.pause()">
       <source src="showcase_gifs/promo-video.mp4" type="video/mp4">
       您的浏览器不支持视频播放
     </video>
-    <div style="text-align:center;margin-top:8px;color:rgba(255,255,255,.5);font-size:13px;">欢迎进入数字魔盒的世界</div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:all .3s;" id="play-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+    <div style="text-align:center;margin-top:8px;color:rgba(255,255,255,.5);font-size:13px;">欢迎进入数字魔盒的世界 · 点击暂停/播放</div>
   </div>
 <a href="#cases" class="hero-cta">📋  查看定制案例</a><div class="scroll-hint"><span>向下滚动</span><div class="arrow"></div></div></section>
 
