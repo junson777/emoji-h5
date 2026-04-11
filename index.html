@@ -234,6 +234,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // 强制加载
     video.load();
   });
+  
+  // Hero视频特殊处理（移动端兼容）
+  var heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    // iOS Safari需要显式设置属性
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+    heroVideo.muted = true;
+    
+    // 尝试播放
+    var playHero = function() {
+      heroVideo.play().catch(function(e) {
+        console.log('Hero视频播放失败:', e);
+        // 如果播放失败，隐藏视频显示背景
+        heroVideo.style.display = 'none';
+      });
+    };
+    
+    // 多种触发方式
+    playHero();
+    heroVideo.addEventListener('loadedmetadata', playHero);
+    document.addEventListener('touchstart', playHero, {once: true});
+    document.addEventListener('scroll', playHero, {once: true});
+  }
 });
 </script>
 </head>
@@ -241,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <nav class="nav"><div class="nav-logo">数字<span>魔盒</span></div><div class="nav-links"><a href="#cases">案例展示</a><a href="#services">服务套餐</a><a href="#process">合作流程</a><a href="#contact">联系我们</a></div></nav>
 <section class="hero" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#16213e);">
-  <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E">
     <source src="showcase_gifs/hero-bg.mp4" type="video/mp4">
   </video>
   <div class="hero-content" style="position:relative;z-index:1;">
