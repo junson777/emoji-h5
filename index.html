@@ -238,25 +238,28 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hero视频特殊处理（移动端兼容）
   var heroVideo = document.getElementById('hero-video');
   if (heroVideo) {
-    // iOS Safari需要显式设置属性
-    heroVideo.setAttribute('playsinline', '');
-    heroVideo.setAttribute('webkit-playsinline', '');
     heroVideo.muted = true;
+    heroVideo.playsInline = true;
+    heroVideo.setAttribute('playsinline', '');
     
-    // 尝试播放
     var playHero = function() {
-      heroVideo.play().catch(function(e) {
-        console.log('Hero视频播放失败:', e);
-        // 如果播放失败，隐藏视频显示背景
-        heroVideo.style.display = 'none';
+      heroVideo.play().then(function() {
+        console.log('Hero视频播放成功');
+      }).catch(function(e) {
+        console.log('Hero视频播放失败，尝试重试:', e);
+        setTimeout(function() {
+          heroVideo.play().catch(function() {
+            console.log('Hero视频自动播放被阻止（需用户交互）');
+          });
+        }, 500);
       });
     };
     
-    // 多种触发方式
-    playHero();
-    heroVideo.addEventListener('loadedmetadata', playHero);
+    // 页面加载后立即播放
+    setTimeout(playHero, 100);
+    heroVideo.addEventListener('loadeddata', playHero);
     document.addEventListener('touchstart', playHero, {once: true});
-    document.addEventListener('scroll', playHero, {once: true});
+    window.addEventListener('scroll', playHero, {once: true});
   }
 });
 </script>
@@ -265,8 +268,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <nav class="nav"><div class="nav-logo">数字<span>魔盒</span></div><div class="nav-links"><a href="#cases">案例展示</a><a href="#services">服务套餐</a><a href="#process">合作流程</a><a href="#contact">联系我们</a></div></nav>
 <section class="hero" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#16213e);">
-  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E">
-    <source src="showcase_gifs/hero-bg.mp4" type="video/mp4">
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <source src="showcase_gifs/hero-bg-mobile.mp4" type="video/mp4">
   </video>
   <div class="hero-content" style="position:relative;z-index:1;">
     <div class="hero-logo"><img src="logo.gif" alt="数字魔盒"></div><div class="hero-badge">✦  专业个性化数字视觉设计工作室  ✦</div><h1>让你的数字IP<br><span>"动"起来</span></h1><h2>企业品牌IP · 文创非遗 · 文化教育 · 企业家IP · 网红IP · 亲子家庭</h2><div class="hero-tags"><span class="hero-tag hi">企业IP定制</span><span class="hero-tag">年度服务</span><span class="hero-tag">版权登记</span><span class="hero-tag">多语言版本</span><span class="hero-tag">视频短片</span></div><a href="#cases" class="hero-cta">📋  查看定制案例</a><div class="scroll-hint"><span>向下滚动</span><div class="arrow"></div></div>
